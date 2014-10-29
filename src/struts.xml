@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+  <package name="ADD" namespace="/AAproject" extends="struts-default">
+    <action name="delete" class="Add.add">
+      <result name="删除成功！">/delete.jsp</result>
+    </action>
+    <action name="add" class="Add.add">
+      <result name="添加成功！">/add.jsp</result>
+    </action>
+  </package>
+</struts>
