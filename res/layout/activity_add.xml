@@ -32,24 +32,7 @@
             <requestFocus />
         </EditText>
     </RelativeLayout>
-	<RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/weibo_mystring_projectnum"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <EditText
-            android:id="@+id/projectnum"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/text"
-            android:ems="10" />
-    </RelativeLayout>
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >

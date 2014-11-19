@@ -64,12 +64,12 @@ public class Projectservice {
 		cursor.close();
 		return projects;
 	}
-	public int getCount()
+	public long getCount()
 	{
 		SQLiteDatabase db = dbservice.getReadableDatabase();
 		Cursor cursor =db.rawQuery("select count(*) from project",null);
 		cursor.moveToFirst();
-		int result=cursor.getInt(0);
+		long result=cursor.getLong(0);
 		cursor.close();
 		return result;
 	}
