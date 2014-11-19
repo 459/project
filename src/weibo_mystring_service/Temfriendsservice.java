@@ -47,11 +47,11 @@ public class Temfriendsservice {
 		cursor.close();
 		return null;
 	}
-	public List<Temfriends> getScrollData(int offset,int maxResult)
+	public List<Temfriends> getScrollData(int pid,int offset,int maxResult)
 	{
 		List<Temfriends> tfs = new ArrayList<Temfriends>();
 		SQLiteDatabase db = dbservice.getReadableDatabase();
-		Cursor cursor =db.rawQuery("select *from temfriends order by projectid asc limit ?,?", new String[]{String.valueOf(offset),String.valueOf(maxResult)});
+		Cursor cursor =db.rawQuery("select *from temfriends where projectid = '"+pid+"' order by projectid asc limit ?,?", new String[]{String.valueOf(offset),String.valueOf(maxResult)});
 		while(cursor.moveToNext())
 		{
 			int id = cursor.getInt(cursor.getColumnIndex("projectid"));
@@ -66,6 +66,15 @@ public class Temfriendsservice {
 	{
 		SQLiteDatabase db = dbservice.getReadableDatabase();
 		Cursor cursor =db.rawQuery("select count(*) from temfriends",null);
+		cursor.moveToFirst();
+		long result=cursor.getLong(0);
+		cursor.close();
+		return result;
+	}
+	public long getCount1(int id)
+	{
+		SQLiteDatabase db = dbservice.getReadableDatabase();
+		Cursor cursor =db.rawQuery("select count(*) from temfriends where projectid = '"+id+"'",null);
 		cursor.moveToFirst();
 		long result=cursor.getLong(0);
 		cursor.close();

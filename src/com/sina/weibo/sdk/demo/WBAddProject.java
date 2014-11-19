@@ -17,7 +17,10 @@
 package com.sina.weibo.sdk.demo;
 
 
+import java.io.File;
+
 import weibo_mystring_service.DBservice;
+import weibo_mystring_service.FileService;
 import weibo_mystring_service.Project;
 import weibo_mystring_service.Projectservice;
 import android.app.Activity;
@@ -65,19 +68,32 @@ public final class WBAddProject extends Activity {
             	public void onClick(View v) {
             	String pnames = "";
             	String pprices = "";
+            	String pnums = "";
+            	String id = "";
+            	int pnumi;
             	EditText pname = (EditText) findViewById(R.id.projectname);
                 EditText pprice = (EditText) findViewById(R.id.projectprice);
+                EditText pnum = (EditText) findViewById(R.id.projectnum);
+                
                 pnames = pname.getText().toString();
                 pprices = pprice.getText().toString();
+                pnums = pnum.getText().toString();
+                pnumi = Integer.valueOf(pnums).intValue();
                 
                 /*数据库存入*/
                 DBservice dbservice = new DBservice(getApplicationContext());
                 dbservice.getWritableDatabase();
                 project.setName(pnames);
                 project.setPrice(Integer.valueOf(pprices).intValue());
-                project.setMembernum(0);
-                
-                
+                project.setMembernum(pnumi);
+                id = String.valueOf(projectservice.getCount()+1);
+                FileService files = new FileService(getApplicationContext());
+                try {
+					files.save(id,pnums,pprices);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 
             	if(pnames!=null && pprices!=null){
             		if(AA.isChecked() && !percent.isChecked()){ 
