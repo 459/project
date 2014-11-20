@@ -35,6 +35,7 @@
         <activity android:name=".WB_PercentActivity" />
         <activity android:name=".WB_nextActivity" />
         <activity android:name=".WBFindActivity" />
+        <activity android:name=".WBDetilProject" />
         
         <!-- 授权认证 -->
         <activity android:name=".WBAuthActivity" />

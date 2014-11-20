@@ -5,12 +5,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import weibo_mystring_service.FileService;
 import weibo_mystring_service.Project;
 import weibo_mystring_service.Projectservice;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast; 
+import android.view.View;   
 
 public class WBFindActivity extends Activity{
 	private Projectservice projectservice;
@@ -22,6 +29,24 @@ public class WBFindActivity extends Activity{
     	projectservice = new Projectservice(this);
     	listview = (ListView)this.findViewById(R.id.listview);
     	show();
+    	
+    	listview.setOnItemClickListener(new OnItemClickListener(){   
+            @Override   
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {   
+				TextView testview=(TextView) arg1.findViewById(R.id.pLid);
+            	String pLid = testview.getText().toString();
+            	 
+            	 FileService file = new FileService(getApplicationContext());
+            	 try {
+				 	file.save1(pLid);
+				 } catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				 }
+            	 
+                startActivity(new Intent(WBFindActivity.this, WBDetilProject.class));
+            }       
+        });   
     }
 
 	private void show() {

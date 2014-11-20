@@ -56,7 +56,7 @@ public final class WB_AllAAActivity extends Activity {
             			Toast.makeText(getApplicationContext(), R.string.weibo_mystring_savesuccess, Toast.LENGTH_SHORT).show();
             		}
             		else{
-            			Toast.makeText(getApplicationContext(), R.string.weibo_mystring_saveerror+"，超过人数！", Toast.LENGTH_SHORT).show();
+            			Toast.makeText(getApplicationContext(), "超过人数！", Toast.LENGTH_SHORT).show();
             		}
 				} catch (Exception e) {
 					Toast.makeText(getApplicationContext(), R.string.weibo_mystring_saveerror, Toast.LENGTH_SHORT).show();

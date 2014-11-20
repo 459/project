@@ -131,4 +131,6 @@
     <string name="weibi_mystring_findProject">查找项目</string>
     <string name="weibo_mystring_pronum">总人数:</string>
     <string name="weibo_mystring_projectnum">总人数：</string>
+    <string name="weibi_mystring_deleteproject">删除</string>
+    <string name="weibo_mystring_deleteproject1">删  除</string>
 </resources>
