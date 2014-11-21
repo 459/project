@@ -16,6 +16,9 @@
 
 package com.sina.weibo.sdk.demo;
 
+import weibo_mystring_service.FileService;
+import weibo_mystring_service.Project;
+import weibo_mystring_service.Projectservice;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -166,15 +169,18 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
                 if (mWeiboShareAPI.checkEnvironment(true)) {                    
                     sendMessage(mTextCheckbox.isChecked(), 
                             mImageCheckbox.isChecked(), 
-                            mShareWebPageView.isChecked(),
-                            mShareMusicView.isChecked(), 
-                            mShareVideoView.isChecked(), 
-                            mShareVoiceView.isChecked());
+                            false,
+                            false, 
+                            false, 
+                            false);
                 }
             } catch (WeiboShareException e) {
                 e.printStackTrace();
                 Toast.makeText(WBShareActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            }
+            } catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
     }
 
@@ -191,42 +197,8 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
         mSharedBtn = (Button) findViewById(R.id.share_to_btn);
         mSharedBtn.setOnClickListener(this);
         
-        mShareWebPageView = (WBShareItemView)findViewById(R.id.share_webpage_view);
-        mShareMusicView = (WBShareItemView)findViewById(R.id.share_music_view);
-        mShareVideoView = (WBShareItemView)findViewById(R.id.share_video_view);
-        mShareVoiceView = (WBShareItemView)findViewById(R.id.share_voice_view);
-        mShareWebPageView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareMusicView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareVideoView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareVoiceView.setOnCheckedChangeListener(mCheckedChangeListener);
         
-        mShareWebPageView.initWithRes(
-                R.string.weibosdk_demo_share_webpage_title, 
-                R.drawable.ic_sina_logo, 
-                R.string.weibosdk_demo_share_webpage_title, 
-                R.string.weibosdk_demo_share_webpage_desc, 
-                R.string.weibosdk_demo_test_webpage_url);
-        
-        mShareMusicView.initWithRes(
-                R.string.weibosdk_demo_share_music_title, 
-                R.drawable.ic_share_music_thumb, 
-                R.string.weibosdk_demo_share_music_title, 
-                R.string.weibosdk_demo_share_music_desc, 
-                R.string.weibosdk_demo_test_music_url);
-        
-        mShareVideoView.initWithRes(
-                R.string.weibosdk_demo_share_video_title, 
-                R.drawable.ic_share_video_thumb, 
-                R.string.weibosdk_demo_share_video_title, 
-                R.string.weibosdk_demo_share_video_desc, 
-                R.string.weibosdk_demo_test_video_url);
-        
-        mShareVoiceView.initWithRes(
-                R.string.weibosdk_demo_share_voice_title, 
-                R.drawable.ic_share_voice_thumb, 
-                R.string.weibosdk_demo_share_voice_title, 
-                R.string.weibosdk_demo_share_voice_desc, 
-                R.string.weibosdk_demo_test_voice_url);
+       
     }
 
     /**
@@ -246,17 +218,18 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
 
     /**
      * 第三方应用发送请求消息到微博，唤起微博分享界面。
+     * @throws Exception 
      * @see {@link #sendMultiMessage} 或者 {@link #sendSingleMessage}
      */
     private void sendMessage(boolean hasText, boolean hasImage, 
-			boolean hasWebpage, boolean hasMusic, boolean hasVideo, boolean hasVoice) {
+			boolean hasWebpage, boolean hasMusic, boolean hasVideo, boolean hasVoice) throws Exception {
         
         if (mWeiboShareAPI.isWeiboAppSupportAPI()) {
             int supportApi = mWeiboShareAPI.getWeiboAppSupportAPI();
             if (supportApi >= 10351 /*ApiUtils.BUILD_INT_VER_2_2*/) {
-                sendMultiMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo, hasVoice);
+                sendMultiMessage(hasText, hasImage, false, false, false, false);
             } else {
-                sendSingleMessage(hasText, hasImage, hasWebpage, hasMusic, hasVideo/*, hasVoice*/);
+                sendSingleMessage(hasText, hasImage, false, false, false/*, hasVoice*/);
             }
         } else {
             Toast.makeText(this, R.string.weibosdk_demo_not_support_api_hint, Toast.LENGTH_SHORT).show();
@@ -274,9 +247,10 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
      * @param hasMusic   分享的内容是否有音乐
      * @param hasVideo   分享的内容是否有视频
      * @param hasVoice   分享的内容是否有声音
+     * @throws Exception 
      */
     private void sendMultiMessage(boolean hasText, boolean hasImage, boolean hasWebpage,
-            boolean hasMusic, boolean hasVideo, boolean hasVoice) {
+            boolean hasMusic, boolean hasVideo, boolean hasVoice) throws Exception {
         
         // 1. 初始化微博的分享消息
         WeiboMultiMessage weiboMessage = new WeiboMultiMessage();
@@ -288,19 +262,6 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
             weiboMessage.imageObject = getImageObj();
         }
         
-        // 用户可以分享其它媒体资源（网页、音乐、视频、声音中的一种）
-        if (hasWebpage) {
-            weiboMessage.mediaObject = getWebpageObj();
-        }
-        if (hasMusic) {
-            weiboMessage.mediaObject = getMusicObj();
-        }
-        if (hasVideo) {
-            weiboMessage.mediaObject = getVideoObj();
-        }
-        if (hasVoice) {
-            weiboMessage.mediaObject = getVoiceObj();
-        }
         
         // 2. 初始化从第三方到微博的消息请求
         SendMultiMessageToWeiboRequest request = new SendMultiMessageToWeiboRequest();
@@ -322,9 +283,10 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
      * @param hasWebpage 分享的内容是否有网页
      * @param hasMusic   分享的内容是否有音乐
      * @param hasVideo   分享的内容是否有视频
+     * @throws Exception 
      */
     private void sendSingleMessage(boolean hasText, boolean hasImage, boolean hasWebpage,
-            boolean hasMusic, boolean hasVideo/*, boolean hasVoice*/) {
+            boolean hasMusic, boolean hasVideo/*, boolean hasVoice*/) throws Exception {
         
         // 1. 初始化微博的分享消息
         // 用户可以分享文本、图片、网页、音乐、视频中的一种
@@ -335,18 +297,6 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
         if (hasImage) {
             weiboMessage.mediaObject = getImageObj();
         }
-        if (hasWebpage) {
-            weiboMessage.mediaObject = getWebpageObj();
-        }
-        if (hasMusic) {
-            weiboMessage.mediaObject = getMusicObj();
-        }
-        if (hasVideo) {
-            weiboMessage.mediaObject = getVideoObj();
-        }
-        /*if (hasVoice) {
-            weiboMessage.mediaObject = getVoiceObj();
-        }*/
         
         // 2. 初始化从第三方到微博的消息请求
         SendMessageToWeiboRequest request = new SendMessageToWeiboRequest();
@@ -362,30 +312,21 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
      * 获取分享的文本模板。
      * 
      * @return 分享的文本模板
+     * @throws Exception 
      */
-    private String getSharedText() {
-        int formatId = R.string.weibosdk_demo_share_text_template;
-        String format = getString(formatId);
-        String text = format;
-        String demoUrl = getString(R.string.weibosdk_demo_app_url);
+    private String getSharedText() throws Exception {
+        FileService file = new FileService(this);
+        Projectservice ps = new Projectservice(this);
+        Project pro = new Project();
+        String pid = file.read1();
+        
+        pro = ps.find(Integer.valueOf(pid).intValue());
+        String data = "我今天在项目"+pro.getName()+"中，消费了"+pro.getPrice()+"元。";
+    	//int formatId = R.string.weibosdk_demo_share_text_template;
+        String format = data;
+        String text = data;
         if (mTextCheckbox.isChecked() || mImageCheckbox.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_text_template);
-        }
-        if (mShareWebPageView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_webpage_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_webpage_demo), demoUrl);
-        }
-        if (mShareMusicView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_music_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_music_demo), demoUrl);
-        }
-        if (mShareVideoView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_video_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_video_demo), demoUrl);
-        }
-        if (mShareVoiceView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_voice_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_voice_demo), demoUrl);
+            format = data;
         }
         
         return text;
@@ -395,8 +336,9 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
      * 创建文本消息对象。
      * 
      * @return 文本消息对象。
+     * @throws Exception 
      */
-    private TextObject getTextObj() {
+    private TextObject getTextObj() throws Exception {
         TextObject textObject = new TextObject();
         textObject.text = getSharedText();
         return textObject;

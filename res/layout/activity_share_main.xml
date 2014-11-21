@@ -13,72 +13,8 @@
         android:id="@+id/register_app_to_weibo"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/weibosdk_demo_register_app_to_weibo" />
+        android:text="@string/weibo_mystring_sharemainbutton" />
 
-    <TextView
-        android:id="@+id/register_app_to_weibo_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/weibosdk_demo_register_app_to_weibo_hint"
-        android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/share_to_weibo"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/weibosdk_demo_share_to_weibo" />
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/weibosdk_demo_obtain_client_abstract_info_hint"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weibosdk_demo_is_installed_weibo"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/weibosdk_demo_is_installed_weibo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weibosdk_demo_support_api_level"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/weibosdk_demo_support_api_level"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/weibosdk_demo_support_api_level_hint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/weibosdk_demo_support_api_level_hint"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </ScrollView>
 </LinearLayout>

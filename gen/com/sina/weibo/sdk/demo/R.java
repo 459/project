@@ -89,12 +89,12 @@ public final class R {
         public static final int flist=0x7f09002b;
         public static final int friend_uid=0x7f09002e;
         public static final int invite_button=0x7f09002f;
-        public static final int item_checked_btn=0x7f090047;
-        public static final int item_share_desc_view=0x7f09004a;
-        public static final int item_share_title_view=0x7f090049;
-        public static final int item_share_url_view=0x7f09004b;
-        public static final int item_thumb_image_btn=0x7f090048;
-        public static final int item_title_view=0x7f090046;
+        public static final int item_checked_btn=0x7f09003e;
+        public static final int item_share_desc_view=0x7f090041;
+        public static final int item_share_title_view=0x7f090040;
+        public static final int item_share_url_view=0x7f090042;
+        public static final int item_thumb_image_btn=0x7f09003f;
+        public static final int item_title_view=0x7f09003d;
         public static final int listview=0x7f09001a;
         public static final int login_button_default=0x7f09001e;
         public static final int login_button_style1=0x7f09001f;
@@ -122,19 +122,13 @@ public final class R {
         public static final int projectname=0x7f090006;
         public static final int projectnum=0x7f090008;
         public static final int projectprice=0x7f09000a;
-        public static final int register_app_to_weibo=0x7f090040;
-        public static final int register_app_to_weibo_hint=0x7f090041;
+        public static final int register_app_to_weibo=0x7f09003c;
         public static final int result=0x7f090024;
         public static final int selOK=0x7f09000e;
         public static final int share_imageview=0x7f090039;
-        public static final int share_music_view=0x7f09003c;
         public static final int share_text_checkbox=0x7f090038;
         public static final int share_title=0x7f090037;
-        public static final int share_to_btn=0x7f09003f;
-        public static final int share_to_weibo=0x7f090042;
-        public static final int share_video_view=0x7f09003d;
-        public static final int share_voice_view=0x7f09003e;
-        public static final int share_webpage_view=0x7f09003b;
+        public static final int share_to_btn=0x7f09003b;
         public static final int shared_image_checkbox=0x7f09003a;
         public static final int sharep=0x7f090014;
         public static final int temfriend=0x7f090003;
@@ -146,9 +140,6 @@ public final class R {
         public static final int textView4=0x7f090002;
         public static final int textView5=0x7f090009;
         public static final int token_text_view=0x7f090011;
-        public static final int weibosdk_demo_is_installed_weibo=0x7f090043;
-        public static final int weibosdk_demo_support_api_level=0x7f090044;
-        public static final int weibosdk_demo_support_api_level_hint=0x7f090045;
     }
     public static final class layout {
         public static final int activity_aa=0x7f030000;
@@ -198,6 +189,7 @@ public final class R {
         public static final int weibo_mystring_select_mode=0x7f05005e;
         public static final int weibo_mystring_selecterror=0x7f050062;
         public static final int weibo_mystring_selectfriends=0x7f05005d;
+        public static final int weibo_mystring_sharemainbutton=0x7f050073;
         public static final int weibosdk_demo_access_token_is_empty=0x7f050058;
         public static final int weibosdk_demo_app_url=0x7f050038;
         public static final int weibosdk_demo_cancel_download_weibo=0x7f050028;

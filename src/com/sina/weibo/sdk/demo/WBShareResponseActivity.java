@@ -63,6 +63,7 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
     /** 用于控制是否分享文本的 CheckBox */
     private CheckBox        mTextCheckbox;
     /** 用于控制是否分享图片的 CheckBox */
+
     private CheckBox        mImageCheckbox;
     /** 分享网页控件 */
     private WBShareItemView mShareWebPageView;
@@ -166,43 +167,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
 
         mSharedBtn = (Button) findViewById(R.id.share_to_btn);
         mSharedBtn.setOnClickListener(this);
-        
-        mShareWebPageView = (WBShareItemView)findViewById(R.id.share_webpage_view);
-        mShareMusicView = (WBShareItemView)findViewById(R.id.share_music_view);
-        mShareVideoView = (WBShareItemView)findViewById(R.id.share_video_view);
-        mShareVoiceView = (WBShareItemView)findViewById(R.id.share_voice_view);
-        mShareWebPageView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareMusicView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareVideoView.setOnCheckedChangeListener(mCheckedChangeListener);
-        mShareVoiceView.setOnCheckedChangeListener(mCheckedChangeListener);
-        
-        mShareWebPageView.initWithRes(
-                R.string.weibosdk_demo_share_webpage_title, 
-                R.drawable.ic_sina_logo, 
-                R.string.weibosdk_demo_share_webpage_title, 
-                R.string.weibosdk_demo_share_webpage_desc, 
-                R.string.weibosdk_demo_test_webpage_url);
-        
-        mShareMusicView.initWithRes(
-                R.string.weibosdk_demo_share_music_title, 
-                R.drawable.ic_share_music_thumb, 
-                R.string.weibosdk_demo_share_music_title, 
-                R.string.weibosdk_demo_share_music_desc, 
-                R.string.weibosdk_demo_test_music_url);
-        
-        mShareVideoView.initWithRes(
-                R.string.weibosdk_demo_share_video_title, 
-                R.drawable.ic_share_video_thumb, 
-                R.string.weibosdk_demo_share_video_title, 
-                R.string.weibosdk_demo_share_video_desc, 
-                R.string.weibosdk_demo_test_video_url);
-        
-        mShareVoiceView.initWithRes(
-                R.string.weibosdk_demo_share_voice_title, 
-                R.drawable.ic_share_voice_thumb, 
-                R.string.weibosdk_demo_share_voice_title, 
-                R.string.weibosdk_demo_share_voice_desc, 
-                R.string.weibosdk_demo_test_voice_url);
     }
 
     /**
@@ -263,19 +227,6 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
             weiboMessage.imageObject = getImageObj();
         }
         
-        // 用户可以分享其它媒体资源（网页、音乐、视频、声音中的一种）
-        if (hasWebpage) {
-            weiboMessage.mediaObject = getWebpageObj();
-        }
-        if (hasMusic) {
-            weiboMessage.mediaObject = getMusicObj();
-        }
-        if (hasVideo) {
-            weiboMessage.mediaObject = getVideoObj();
-        }
-        if (hasVoice) {
-            weiboMessage.mediaObject = getVoiceObj();
-        }
         
 		// 2. 初始化从微博到第三方的消息请求
         ProvideMultiMessageForWeiboResponse response = new ProvideMultiMessageForWeiboResponse();
@@ -310,18 +261,8 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
         if (hasImage) {
             weiboMessage.mediaObject = getImageObj();
         }
-        if (hasWebpage) {
-            weiboMessage.mediaObject = getWebpageObj();
-        }
-        if (hasMusic) {
-            weiboMessage.mediaObject = getMusicObj();
-        }
-        if (hasVideo) {
-            weiboMessage.mediaObject = getVideoObj();
-        }
-        /*if (hasVoice) {
-            weiboMessage.mediaObject = getVoiceObj();
-        }*/
+
+
         
 		// 2. 初始化从微博到第三方的消息请求
         ProvideMessageForWeiboResponse response = new ProvideMessageForWeiboResponse();
@@ -342,25 +283,8 @@ public class WBShareResponseActivity extends Activity implements OnClickListener
         int formatId = R.string.weibosdk_demo_share_text_template;
         String format = getString(formatId);
         String text = format;
-        String demoUrl = getString(R.string.weibosdk_demo_app_url);
         if (mTextCheckbox.isChecked() || mImageCheckbox.isChecked()) {
             format = getString(R.string.weibosdk_demo_share_text_template);
-        }
-        if (mShareWebPageView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_webpage_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_webpage_demo), demoUrl);
-        }
-        if (mShareMusicView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_music_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_music_demo), demoUrl);
-        }
-        if (mShareVideoView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_video_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_video_demo), demoUrl);
-        }
-        if (mShareVoiceView.isChecked()) {
-            format = getString(R.string.weibosdk_demo_share_voice_template);
-            text = String.format(format, getString(R.string.weibosdk_demo_share_voice_demo), demoUrl);
         }
         
         return text;

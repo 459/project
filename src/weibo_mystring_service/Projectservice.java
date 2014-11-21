@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class Projectservice {
 	private DBservice dbservice;
-	
 	public Projectservice(Context context) {
 		this.dbservice = new DBservice(context);
 	}
@@ -21,7 +20,7 @@ public class Projectservice {
 				new Object[]{project.getName(),project.getPrice(),project.getMembernum()});
 		db.close();
 	}
-	public void delete(Integer id)
+	public void delete(int id)
 	{
 		SQLiteDatabase db = dbservice.getWritableDatabase();
 		db.execSQL("delete from project where projectid = ?",
