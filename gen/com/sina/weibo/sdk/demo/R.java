@@ -4,7 +4,6 @@
  * aapt tool from the resource data it found.  It
  * should not be modified by hand.
  */
-
 package com.sina.weibo.sdk.demo;
 
 public final class R {

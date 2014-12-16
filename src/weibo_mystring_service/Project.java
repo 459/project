@@ -2,6 +2,7 @@ package weibo_mystring_service;
 
 public class Project {
 
+	
 	private int projectid;
 	private String name;
 	private int price;

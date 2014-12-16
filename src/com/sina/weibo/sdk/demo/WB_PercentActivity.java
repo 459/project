@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.Toast;
-
-
 public class WB_PercentActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);

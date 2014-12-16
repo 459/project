@@ -5,7 +5,6 @@
  * should not be modified by hand.
  */
 package com.sina.weibo.sdk;
-
 public final class R {
 	public static final class color {
 		public static final int com_sina_weibo_sdk_blue = 0x7f070000;

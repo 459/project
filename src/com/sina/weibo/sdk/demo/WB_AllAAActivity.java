@@ -1,6 +1,5 @@
 package com.sina.weibo.sdk.demo;
 
-
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.openapi.UsersAPI;
 
