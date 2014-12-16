@@ -17,9 +17,13 @@ public class FileService {
 	public FileService(Context context){
 		this.context = context;
 	}
-	public void save1(String name) throws Exception{
-		FileOutputStream outStream = context.openFileOutput("temp", Context.MODE_APPEND);
-		outStream.write(name.getBytes());
+	public void save(String id,String num,String price) throws Exception{
+		FileOutputStream outStream = context.openFileOutput("temp", Context.MODE_PRIVATE);
+		outStream.write(id.getBytes());
+		outStream.write(';');
+		outStream.write(num.getBytes());
+		outStream.write(';');
+		outStream.write(price.getBytes());
 		outStream.close();
 	}
 	public String read() throws Exception{
