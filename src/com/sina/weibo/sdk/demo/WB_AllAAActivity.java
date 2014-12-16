@@ -33,6 +33,7 @@ public final class WB_AllAAActivity extends Activity {
             	String data;
             	String[] pdata = {"0","0","0"};//0为id 1为num 2为price
             	int price;
+            	int percent;
             	FileService file=new FileService(getApplicationContext());
             	try {
 					data = file.read();
@@ -46,10 +47,13 @@ public final class WB_AllAAActivity extends Activity {
             	price = Integer.valueOf(pdata[2]).intValue()/Integer.valueOf(pdata[1]).intValue();
             	EditText fname = (EditText) findViewById(R.id.temfriend);
             	fnames = fname.getText().toString();
+            	fname.setText("");
+            	percent = 100/Integer.valueOf(pdata[1]).intValue();
             	//sql
             	tf.setName(fnames);
             	tf.setProjectid(Integer.valueOf(pdata[0]).intValue());
             	tf.setPayprice(price);
+            	tf.setPercent(percent);
             	try {
             		if(temfriendsservice.getCount1(Integer.valueOf(pdata[0]).intValue())<Integer.valueOf(pdata[1]).intValue()){
             			temfriendsservice.save(tf);

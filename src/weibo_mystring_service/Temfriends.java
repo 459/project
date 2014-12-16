@@ -4,13 +4,15 @@ public class Temfriends {
 	private int projectid;
 	private String name;
 	private int payprice;
+	private int percent;
 	
 	public Temfriends(){}
-	public Temfriends(int projectid, String name, int payprice) {
+	public Temfriends(int projectid, String name, int payprice,int percent) {
 		super();
 		this.projectid = projectid;
 		this.name = name;
 		this.payprice = payprice;
+		this.percent = percent;
 	}
 	
 	public int getProjectid() {
@@ -31,5 +33,10 @@ public class Temfriends {
 	public void setPayprice(int payprice) {
 		this.payprice = payprice;
 	}
-	
+	public int getPercent() {
+		return percent;
+	}
+	public void setPercent(int percent) {
+		this.percent = percent;
+	}
 }

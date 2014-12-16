@@ -16,9 +16,15 @@
 
 package com.sina.weibo.sdk.demo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import weibo_mystring_service.FileService;
 import weibo_mystring_service.Project;
 import weibo_mystring_service.Projectservice;
+import weibo_mystring_service.Temfriends;
+import weibo_mystring_service.Temfriendsservice;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -258,9 +264,6 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
             weiboMessage.textObject = getTextObj();
         }
         
-        if (hasImage) {
-            weiboMessage.imageObject = getImageObj();
-        }
         
         
         // 2. 初始化从第三方到微博的消息请求
@@ -294,9 +297,6 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
         if (hasText) {
             weiboMessage.mediaObject = getTextObj();
         }
-        if (hasImage) {
-            weiboMessage.mediaObject = getImageObj();
-        }
         
         // 2. 初始化从第三方到微博的消息请求
         SendMessageToWeiboRequest request = new SendMessageToWeiboRequest();
@@ -317,11 +317,19 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
     private String getSharedText() throws Exception {
         FileService file = new FileService(this);
         Projectservice ps = new Projectservice(this);
+        Temfriendsservice tfs = new Temfriendsservice(this);
         Project pro = new Project();
         String pid = file.read1();
-        
+        int i;
         pro = ps.find(Integer.valueOf(pid).intValue());
-        String data = "我今天在项目"+pro.getName()+"中，消费了"+pro.getPrice()+"元。";
+        String data1="";
+        String temp="";
+        List<Temfriends> temfriends = tfs.getScrollData(Integer.valueOf(pid).intValue(),0, 200);
+		for(Temfriends temfriend : temfriends){
+			data1=temp+"@"+temfriend.getName()+temfriend.getPayprice()+"元.";
+			temp=data1;
+		}
+		String data = "我今天在项目"+pro.getName()+"中，与"+pro.getMembernum()+"位朋友一起消费了"+pro.getPrice()+"元。"+data1;
     	//int formatId = R.string.weibosdk_demo_share_text_template;
         String format = data;
         String text = data;
@@ -344,17 +352,6 @@ public class WBShareActivity extends Activity implements OnClickListener, IWeibo
         return textObject;
     }
 
-    /**
-     * 创建图片消息对象。
-     * 
-     * @return 图片消息对象。
-     */
-    private ImageObject getImageObj() {
-        ImageObject imageObject = new ImageObject();
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) mImageView.getDrawable();
-        imageObject.setImageObject(bitmapDrawable.getBitmap());
-        return imageObject;
-    }
 
     /**
      * 创建多媒体（网页）消息对象。

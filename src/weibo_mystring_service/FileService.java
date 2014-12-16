@@ -31,6 +31,11 @@ public class FileService {
 		outStream.write(id.getBytes());
 		outStream.close();
 	}
+	public void save2(String price) throws Exception{
+		FileOutputStream outStream = context.openFileOutput("temp2", Context.MODE_PRIVATE);
+		outStream.write(price.getBytes());
+		outStream.close();
+	}
 	public String read() throws Exception{
 		FileInputStream inStream = context.openFileInput("temp");
 		int len = 0;
@@ -45,6 +50,18 @@ public class FileService {
 	}
 	public String read1() throws Exception{
 		FileInputStream inStream = context.openFileInput("temp1");
+		int len = 0;
+		byte[] buffer = new byte [1024];
+		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+		while((len = inStream.read(buffer))!=-1){
+			outStream.write(buffer, 0, len);
+		}
+		byte data[] = outStream.toByteArray();
+		inStream.close();
+		return new String(data);
+	}
+	public String read2() throws Exception{
+		FileInputStream inStream = context.openFileInput("temp2");
 		int len = 0;
 		byte[] buffer = new byte [1024];
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream();

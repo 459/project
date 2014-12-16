@@ -57,8 +57,7 @@ public final class WBAddProject extends Activity {
         //添加事件监听
         AA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
             @Override 
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {} 
-        }); 
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {} }); 
         
         percent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){ 
         	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {} }); 

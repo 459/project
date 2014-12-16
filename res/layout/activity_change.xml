@@ -8,25 +8,12 @@
 	    android:layout_height="wrap_content" >
 
 	    <Button
-	        android:id="@+id/delectp"
+	        android:id="@+id/end"
 	        style="?android:attr/buttonStyleSmall"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="@string/weibo_mystring_deleteproject1" />
+	        android:text="@string/weibo_mystring_over" />
 
-	    <Button
-	        android:id="@+id/sharep"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/weibosdk_demo_share_to" />
-
-	    <Button
-	        android:id="@+id/wrongprice1"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/weibo_mystring_wrongprice" />
 
 	   </LinearLayout>
 	   
@@ -46,15 +33,14 @@
 	    <TextView
 	        android:layout_width="140dp"
 	    	android:layout_height="wrap_content" 
-	    	android:text="支付金额"
+	    	android:text="差额"
 	    />
 
 	    </LinearLayout>
    <ListView
         android:layout_width="match_parent"
     	android:layout_height="match_parent"
-    	android:id="@+id/p2flist"
+    	android:id="@+id/tflist"
    />
 
 </LinearLayout>
-

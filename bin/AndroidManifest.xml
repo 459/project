@@ -36,6 +36,8 @@
         <activity android:name=".WB_nextActivity" />
         <activity android:name=".WBFindActivity" />
         <activity android:name=".WBDetilProject" />
+        <activity android:name=".WB_Wrongprice" />
+        <activity android:name=".WB_Changeprice" />
         
         <!-- 授权认证 -->
         <activity android:name=".WBAuthActivity" />

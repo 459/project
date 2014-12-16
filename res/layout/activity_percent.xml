@@ -35,13 +35,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/weibi_mystring_inputPercent" />
-
+<LinearLayout 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content" >
     <EditText
         android:id="@+id/percent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10" />
 
+	<TextView
+	    android:id="@+id/textView6"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/weibo_mystring_percenthao" />
+
+	   </LinearLayout>
+	   
     <Button
         android:id="@+id/addTemfriend1"
         style="?android:attr/buttonStyleSmall"

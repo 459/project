@@ -17,8 +17,8 @@ public class Temfriendsservice {
 	public void save(Temfriends tf)
 	{
 		SQLiteDatabase db = dbservice.getWritableDatabase();
-		db.execSQL("insert into temfriends(projectid,name,payprice) values(?,?,?)",
-				new Object[]{tf.getProjectid(),tf.getName(),tf.getPayprice()});
+		db.execSQL("insert into temfriends(projectid,name,payprice,percent) values(?,?,?,?)",
+				new Object[]{tf.getProjectid(),tf.getName(),tf.getPayprice(),tf.getPercent()});
 		db.close();
 	}
 	public void delete(String name)
@@ -28,11 +28,11 @@ public class Temfriendsservice {
 				new Object[]{name});
 		db.close();
 	}
-	public void update(Project project)
+	public void update(Temfriends tf)
 	{
 		SQLiteDatabase db = dbservice.getWritableDatabase();
-		db.execSQL("update temfriends set name=?,price=? where projectid=?",
-				new Object[]{project.getName(),project.getPrice(),project.getProjectid()});
+		db.execSQL("update temfriends set payprice=?,percent=? where name=?",
+				new Object[]{tf.getPayprice(),tf.getPercent(),tf.getName()});
 	}
 	public Temfriends find(Integer id)
 	{
@@ -42,7 +42,8 @@ public class Temfriendsservice {
 		{
 			String name = cursor.getString(cursor.getColumnIndex("name"));
 			int price = cursor.getInt(cursor.getColumnIndex("price"));
-			return new Temfriends(id,name,price);
+			int per = cursor.getInt(cursor.getColumnIndex("percent"));
+			return new Temfriends(id,name,price,per);
 		}
 		cursor.close();
 		return null;
@@ -57,7 +58,8 @@ public class Temfriendsservice {
 			int id = cursor.getInt(cursor.getColumnIndex("projectid"));
 			String name = cursor.getString(cursor.getColumnIndex("name"));
 			int payprice = cursor.getInt(cursor.getColumnIndex("payprice"));
-			tfs.add(new Temfriends(id,name,payprice));
+			int per = cursor.getInt(cursor.getColumnIndex("percent"));
+			tfs.add(new Temfriends(id,name,payprice,per));
 		}
 		cursor.close();
 		return tfs;

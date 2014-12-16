@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weibo_mystring_trueprice"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/trueprice"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/text"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/oktrueprice"
+        style="@style/AppTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/weibo_mystring_changeplan" />
+
+</LinearLayout>

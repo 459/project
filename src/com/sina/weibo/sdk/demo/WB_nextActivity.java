@@ -9,7 +9,10 @@ import weibo_mystring_service.FileService;
 import weibo_mystring_service.Temfriends;
 import weibo_mystring_service.Temfriendsservice;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -24,6 +27,20 @@ public class WB_nextActivity extends Activity{
         temfriendsservice = new Temfriendsservice(this);
     	flist = (ListView)this.findViewById(R.id.flist);
     	show();
+    	 this.findViewById(R.id.end).setOnClickListener(new OnClickListener() {
+
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(WB_nextActivity.this, WBDemoMainActivity.class));
+             }
+         });
+    	 this.findViewById(R.id.wrongprice).setOnClickListener(new OnClickListener() {
+
+             @Override
+             public void onClick(View v) {
+                 startActivity(new Intent(WB_nextActivity.this, WB_Wrongprice.class));
+             }
+         });
     }
 
 	private void show() {

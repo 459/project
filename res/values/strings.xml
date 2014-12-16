@@ -134,4 +134,9 @@
     <string name="weibi_mystring_deleteproject">删除</string>
     <string name="weibo_mystring_deleteproject1">删  除</string>
     <string name="weibo_mystring_sharemainbutton">注册应用到微博，并分享当前项目</string>
+    <string name="weibo_mystring_over">完 成</string>
+    <string name="weibo_mystring_wrongprice">价格变动？</string>
+    <string name="weibo_mystring_trueprice">真实价格：</string>
+    <string name="weibo_mystring_changeplan">按原分配改动</string>
+    <string name="weibo_mystring_percenthao">%</string>
 </resources>

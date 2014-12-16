@@ -53,7 +53,12 @@ public class WBDetilProject extends Activity{
                 dialog.show();
             }
     	});
-    	
+    	this.findViewById(R.id.wrongprice1).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            	startActivity(new Intent(WBDetilProject.this, WB_Wrongprice.class));
+           }
+    	});
     	this.findViewById(R.id.sharep).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

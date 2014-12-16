@@ -8,6 +8,8 @@ import java.util.List;
 import weibo_mystring_service.FileService;
 import weibo_mystring_service.Project;
 import weibo_mystring_service.Projectservice;
+import weibo_mystring_service.Temfriends;
+import weibo_mystring_service.Temfriendsservice;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.view.View;
 
 public class WBFindActivity extends Activity{
 	private Projectservice projectservice;
+	private Temfriendsservice tfs;
 	private ListView listview;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,14 @@ public class WBFindActivity extends Activity{
     	listview.setOnItemClickListener(new OnItemClickListener(){   
             @Override   
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {   
-				TextView testview=(TextView) arg1.findViewById(R.id.pLid);
+				Project pro;
+            	TextView testview=(TextView) arg1.findViewById(R.id.pLid);
             	String pLid = testview.getText().toString();
-            	 
+            	 pro = projectservice.find(Integer.valueOf(pLid).intValue());
             	 FileService file = new FileService(getApplicationContext());
             	 try {
 				 	file.save1(pLid);
+				 	file.save(pLid, String.valueOf(pro.getMembernum()),String.valueOf(pro.getPrice()));
 				 } catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
